@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_blc/bloc/weather/weather_bloc.dart';
+import 'package:weather_blc/style.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,7 +39,8 @@ class _HomePageState extends State<HomePage> {
                 } else if (state is WeatherFetchFailure) {
                   return Text(state.failureMessage.errorMessage);
                 } else if (state is WeatherFetchSuccess) {
-                  return Text(state.weatherInfo.main!.temp!.toString(),
+                  return Text(
+                      "${(state.weatherInfo.main!.temp! - 273.15).toStringAsFixed(1)} C ",
                       style: const TextStyle(fontSize: 30));
                 } else {
                   return const Text("Temperature",
@@ -59,6 +61,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 60),
             ElevatedButton(
+              style: Customstyle.kButtonStyle,
               onPressed: () {
                 context
                     .read<WeatherBloc>()
