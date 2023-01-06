@@ -13,7 +13,7 @@ class WeatherFetchModel {
   String? name;
   int? cod;
 
-  WeatherFetchModel(param0, 
+  WeatherFetchModel(
       {this.coord,
       this.weather,
       this.base,
